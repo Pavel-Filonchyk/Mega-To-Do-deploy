@@ -1,0 +1,107 @@
+body{
+	margin: 0;
+}
+.mainWrapper{
+	width: 100%;
+	height: 100vh;
+	background-color: rgba(14, 225, 240, 0.2);
+	display: flex;
+	//justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	.title{
+		margin-top: 3%;
+		margin-bottom: 3%;
+		font-size: 22px;
+		font-weight: 600;
+	}
+}
+input{
+	outline: none !important;
+	outline-offset: 0px;
+	border: 0;
+	padding: 0;
+	margin: 0;
+	background-color: rgba(14, 225, 240, 0);
+	border-bottom:1px solid gray;
+	width: 100%;
+}
+.wrapToDo{
+	max-width: 650px;
+	min-width: 400px;
+	margin: 15px;
+}
+.addTask{
+	display: flex;
+	flex-direction: row;
+	width: 400px;
+	margin-bottom: 20px;
+	margin-left: 16px;
+	> span {
+		width: 150px;
+	}
+	.iconMainPlus{
+		width: 45px;
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+	.iconPlus{
+		font-size: 25px; 
+		color: blue
+	}
+}
+.tasks{
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	.inputTask{
+		font-size: 14px;
+		margin-bottom: 15px;
+		margin-right: 15px;
+		width: 360px;
+	}
+	.basket{
+		color: red;
+		margin-top: 6px;
+		cursor: pointer;
+	}
+	.check{
+		padding-left: 8px;
+		padding-right: 12px;
+		margin-top: 6px;
+		cursor: pointer;
+	}
+	.checked{
+		padding-left: 8px;
+		padding-right: 8px;
+		margin-top: 6px;
+		cursor: pointer;
+		color: green;
+		animation: scaling 1s;
+	}
+	.changeTask{
+		color: blue;
+		margin-top: 6px;
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+	.task{
+		width: 400px;
+		height: 20px;
+		margin-bottom: 15px;
+		border-bottom:1px solid gray;
+	}
+	.saveTask{
+		margin-top: 6px;
+	}
+
+}
+
+@keyframes scaling {
+	From {
+		-webkit-transform: scale(1.0);
+	}
+	To {
+		-webkit-transform: scale(2.0);
+	}
+  }
