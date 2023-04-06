@@ -1,21 +1,4 @@
-body{
-	margin: 0;
-}
-.mainWrapper{
-	width: 100%;
-	height: 100vh;
-	background-color: rgba(14, 225, 240, 0.2);
-	display: flex;
-	//justify-content: center;
-	align-items: center;
-	flex-direction: column;
-	.title{
-		margin-top: 3%;
-		margin-bottom: 3%;
-		font-size: 22px;
-		font-weight: 600;
-	}
-}
+
 input{
 	outline: none !important;
 	outline-offset: 0px;
@@ -25,40 +8,29 @@ input{
 	background-color: rgba(14, 225, 240, 0);
 	border-bottom:1px solid gray;
 	width: 100%;
+	
 }
+input::placeholder {
+	color: black;
+	font-size: 20px;
+  }
 .wrapToDo{
-	max-width: 650px;
-	min-width: 400px;
-	margin: 15px;
+	width: 100%;
+	margin: 5px;
 }
-.addTask{
-	display: flex;
-	flex-direction: row;
-	width: 400px;
-	margin-bottom: 20px;
-	margin-left: 16px;
-	> span {
-		width: 150px;
-	}
-	.iconMainPlus{
-		width: 45px;
-		padding-left: 5px;
-		padding-right: 5px;
-	}
-	.iconPlus{
-		font-size: 25px; 
-		color: blue
-	}
-}
+
 .tasks{
 	display: flex;
 	flex-direction: row;
 	width: 100%;
+	.wrapInput{
+		width: 100%;
+	}
 	.inputTask{
 		font-size: 14px;
-		margin-bottom: 15px;
+		margin-bottom: 5px;
 		margin-right: 15px;
-		width: 360px;
+		width: calc(100% - 35px);
 	}
 	.basket{
 		color: red;
@@ -80,23 +52,35 @@ input{
 		animation: scaling 1s;
 	}
 	.changeTask{
-		color: blue;
 		margin-top: 6px;
-		padding-left: 15px;
 		padding-right: 15px;
+		cursor: pointer;
 	}
 	.task{
-		width: 400px;
+		width: 100%;
 		height: 20px;
 		margin-bottom: 15px;
 		border-bottom:1px solid gray;
 	}
 	.saveTask{
 		margin-top: 6px;
+		color: blue
 	}
-
+	.addIconPlus{
+		margin-top: 6px;
+		padding-left: 15px;
+		padding-right: 15px;
+		cursor: pointer;
+		color: blue;
+		&:active {
+			animation: scalingPlus 1s;
+		}
+	}
 }
 
+.subTask{
+	padding-left: 30px;
+}
 @keyframes scaling {
 	From {
 		-webkit-transform: scale(1.0);
@@ -105,3 +89,11 @@ input{
 		-webkit-transform: scale(2.0);
 	}
   }
+@keyframes scalingPlus {
+	From {
+		-webkit-transform: scale(1.0);
+	}
+	To {
+		-webkit-transform: scale(-1.0);
+	}
+}

@@ -1,38 +1,42 @@
 /* eslint-disable import/no-anonymous-default-export */
-
 import uuid from 'react-uuid'
+import { addElem, deleteElem, changeElem } from '../../utils'
 import * as actions from '../actions/tasksAction'
 
 export const getTasks = {
 
-  tasks: [{id: 1, task: 'Первая задача'}, {id: 2, task: 'Вторая задача'}, {id: 3, task: 'Третья задача'}],
-  //pokes: null,
+  tasks: [{id: 1, task: 'Первая задача', arrs: null}, {id: 2, task: 'Вторая задача', arrs: null}, {id: 3, task: 'Третья задача', arrs: null}],
+  taskId: ''
 }
 
 const HANDLERS = {
-  // [getPokesDataSuccess]: (state, data) => {
-  //   return {
-  //       ...state,
-  //       pokesData: data,
-  //   }  
-  // },
   [actions.addTask]: (state, data) => {
     return {
         ...state,
         tasks: [
-          ...state.tasks, {id: uuid(), task: data}
+          ...state.tasks, {id: uuid(), task: data, arrs: null}
         ],
     }  
   },
-  [actions.deleteTask]: (state, data) => {
-    const id = data
-    const index = state.tasks.findIndex(item => item.id === id)
+  [actions.newTask]: (state, data) => {
     return {
         ...state,
-        tasks: [
-          ...state.tasks.splice(0, index),
-          ...state.tasks.splice(index + 1)
-        ],
+        tasks: addElem(state.tasks, data)
+    }  
+  },
+  [actions.deleteTask]: (state, data) => {
+    return {
+        ...state,
+        tasks: deleteElem(state.tasks, data) 
+    }  
+  },
+  [actions.saveTask]: (state, data) => {
+    const id = data.id
+    const value = data.value
+    return {
+        ...state,
+        tasks: changeElem(state.tasks, id, value), 
+        taskId: id
     }  
   },
 }
