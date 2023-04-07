@@ -8,8 +8,16 @@ import {
   EditOutlined, 
   CarryOutOutlined 
 } from '@ant-design/icons'
-import { deleteTask, saveTask, newTask } from '../../core/actions/tasksAction'
+import { 
+  deleteTask, 
+  saveTask, 
+  newTask, 
+  grabFirstTask, 
+  grabSecondTask, 
+  grabChangeTasks 
+} from '../../core/actions/tasksAction'
 import { addCheck } from '../../core/actions/addCheckAction'
+//import { deleteElem, addElem } from '../../common/utils'
 
 import style from './Tasks.module.scss'
 
@@ -18,7 +26,7 @@ export default function Tasks({ id, todo, subTask}) {
   const [editTask, setEditTask] = useState(null)
   const [showEditTask, setShowEditTask] = useState(false)
   const [changeTask, setChangeTask] = useState('')
-  
+
   const tasks = useSelector(({ getTasks: { tasks } }) => tasks)
   const check = useSelector(({ addCheck: { check } }) => check)
   const dispatch = useDispatch()
@@ -26,7 +34,6 @@ export default function Tasks({ id, todo, subTask}) {
   const ref = useRef()
 
   useEffect(() => {
-    //dispatch(getTasks())
     ref.current?.focus()
   }, [changeTask])
 
@@ -47,7 +54,19 @@ export default function Tasks({ id, todo, subTask}) {
     dispatch(addCheck(id))
   }
   const addNewTask = (id) => {
-    dispatch(newTask(id))
+    dispatch(newTask({id, todo: ''}))
+  }
+
+  const dragStartHendler = (e, id, todo) => {
+    dispatch(grabFirstTask({id, todo}))
+  }
+  const dropHendler = (e, id, todo) => {
+    e.preventDefault()
+    dispatch(grabSecondTask({id, todo}))
+    dispatch(grabChangeTasks(true))
+  }
+  const dragOverHendler = (e) => {
+   e.preventDefault()
   }
 
   return (
@@ -56,6 +75,12 @@ export default function Tasks({ id, todo, subTask}) {
       <div 
         className={style.tasks} 
         key={id}
+        draggable={true}
+        onDragStart={(e) => dragStartHendler(e, id, todo)}
+        // onDragLeave={(e) => dragLeaveHendler(e, id, todo)}
+        // onDragEnd={(e) => dragEndHendler(e, id, todo)}
+        onDragOver={(e) => dragOverHendler(e, id, todo)}
+        onDrop={(e) => dropHendler(e, id, todo)}
       >
         <CarryOutOutlined 
           className={check?.find(elem => elem === id) ? style.checked : style.check}
@@ -102,5 +127,7 @@ export default function Tasks({ id, todo, subTask}) {
   </>
   )
 }
+
+
 
 

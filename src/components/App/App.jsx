@@ -6,7 +6,7 @@ import { Modal } from 'antd'
 
 import Tasks from '../Tasks/Tasks'
 import { addTask } from '../../core/actions/tasksAction'
-import { findElem } from '../../utils'
+import { findElem } from '../../common/utils'
 
 import style from './App.module.scss'
 
