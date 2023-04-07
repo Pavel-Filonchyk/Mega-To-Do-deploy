@@ -17,7 +17,6 @@ import {
   grabChangeTasks 
 } from '../../core/actions/tasksAction'
 import { addCheck } from '../../core/actions/addCheckAction'
-//import { deleteElem, addElem } from '../../common/utils'
 
 import style from './Tasks.module.scss'
 
@@ -30,7 +29,6 @@ export default function Tasks({ id, todo, subTask}) {
   const tasks = useSelector(({ getTasks: { tasks } }) => tasks)
   const check = useSelector(({ addCheck: { check } }) => check)
   const dispatch = useDispatch()
-  //console.log(tasks)
   const ref = useRef()
 
   useEffect(() => {
@@ -77,8 +75,6 @@ export default function Tasks({ id, todo, subTask}) {
         key={id}
         draggable={true}
         onDragStart={(e) => dragStartHendler(e, id, todo)}
-        // onDragLeave={(e) => dragLeaveHendler(e, id, todo)}
-        // onDragEnd={(e) => dragEndHendler(e, id, todo)}
         onDragOver={(e) => dragOverHendler(e, id, todo)}
         onDrop={(e) => dropHendler(e, id, todo)}
       >
